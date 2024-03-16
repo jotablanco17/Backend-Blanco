@@ -92,6 +92,7 @@ gestorDeProductos.create({
     price: 200,
     stock: 203
 }) 
+
 gestorDeProductos.create({
     photo: 'ojotas.jpg ',
     title: 'ojota ',
