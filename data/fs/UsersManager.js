@@ -1,5 +1,6 @@
-const fs = require('fs')
-const crypto = require('crypto')
+import fs  from 'fs'
+import crypto from 'crypto'
+
 
 class UserManager {
     constructor() {
@@ -45,20 +46,27 @@ class UserManager {
     }
 
 
-    async read() {
+    async read(role = 0) {
         try {
             let all = await fs.promises.readFile(this.path, 'utf-8')
             all = JSON.parse(all)
-            if (!all) {
-                throw new Error('no existe')
-            } else {
+            if (!role || role === 0) {
                 console.log(all);
+                return all
+            }else{
+                const filtered = all.filter((el) => el.role === role);
+                if (filtered.length === 0) {
+                    return null; 
+                } else {
+                    console.log(filtered)
+                    return filtered;
+                }
             }
         } catch (error) {
             console.log(error);
+            return null
         }
     }
-
 
     async readOne(id) {
         try {
@@ -70,6 +78,7 @@ class UserManager {
             } else {
                 console.log('se encontro el producto correctamente');
                 console.log(one);
+                return one
             }
         } catch (error) {
             console.log(error);
@@ -98,39 +107,40 @@ class UserManager {
 }
 
 const users = new UserManager()
+export default users
 
-async function mets() {
-    await users.create({
-        role: 'hex',
-        photo: 'hello.png',
-        email: 'juan@gmail.com',
-        password: 'juan123'
-    })
-    await users.create({
-        role: 'let',
-        photo: 'martin.png',
-        email: 'martin@gmail.com',
-        password: 'martin123'
-    })
-    await users.create({
-        role: 'orl',
-        photo: 'chau.png',
-        email: 'jaime@gmail.com',
-        password: 'jaime23'
-    })
-    await users.create({
-        role: 'cot',
-        email: 'coti@gmail.com',
-        password: 'coti123'
-    })
+// async function mets() {
+//     await users.create({
+//         role: '0',
+//         photo: 'hello.png',
+//         email: 'juan@gmail.com',
+//         password: 'juan123'
+//     })
+//     await users.create({
+//         role: '1',
+//         photo: 'martin.png',
+//         email: 'martin@gmail.com',
+//         password: 'martin123'
+//     })
+//     await users.create({
+//         role: '2',
+//         photo: 'chau.png',
+//         email: 'jaime@gmail.com',
+//         password: 'jaime23'
+//     })
+//     await users.create({
+//         role: '3',
+//         email: 'coti@gmail.com',
+//         password: 'coti123'
+//     })
+//     await users.read();
 
 
-    await users.read();
-    // await users.readOne(1111)                          //no encontrado 
-    // await users.readOne("4cd24ce955d04c4a612cfa39")
+//     // await users.readOne(1111)                         
+//     // await users.readOne("4cd24ce955d04c4a612cfa39")
     
-    // await users.destroyId(34131)                      //no encontrado
-    // await users.destroyId("c4f58ff5676d6181198d5beb")
+//     // await users.destroyId(34131)                      
+//     // await users.destroyId("c4f58ff5676d6181198d5beb")
 
-}
-mets()
+// }
+// mets()
