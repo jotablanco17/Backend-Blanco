@@ -131,7 +131,7 @@ async function mets() {
         photo: 'sillon.png',
         category: 'Muebles',
         price: 150,
-        stock: 15
+        stock: 12
     })
     await products.create({
         title: 'remera',
