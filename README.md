@@ -1,9 +1,7 @@
--Realizo clases sincronas guardando usuarios y productos en memoria 
--realizo clases con metodos asyncronos guardando productos y  usuarios en File System
-
-metodos :
-
-init()
-read()
-readOne(id)
-Destroy(id)
+-Creo mi primer servidor en express
+-instalo nodemon como dev dependencies
+-"type": "module"
+-en mis archivos de FS paso los metodos desde mi servidor local
+-creo 4 usuarios y 20 productos
+-Utilizo el metodo "get" para los metodos de las clases de productos y usuarios
+-agrego el .gitignore para los node_modules
