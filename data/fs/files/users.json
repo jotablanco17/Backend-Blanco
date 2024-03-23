@@ -1,29 +1,29 @@
 [
   {
-    "id": "be5b46c3607ae4fb566cfe21",
+    "id": "1dabb499bbfd5ff766eb45aa",
     "photo": "hello.png",
-    "role": "hex",
+    "role": "0",
     "email": "juan@gmail.com",
     "password": "juan123"
   },
   {
-    "id": "0a842019a4f89f11f5482a90",
+    "id": "5d60f06882bc4403037fa3d3",
     "photo": "martin.png",
-    "role": "let",
+    "role": "1",
     "email": "martin@gmail.com",
     "password": "martin123"
   },
   {
-    "id": "4e12a13688859630135a0e66",
+    "id": "f01cebc168c129929dba1232",
     "photo": "chau.png",
-    "role": "orl",
+    "role": "2",
     "email": "jaime@gmail.com",
     "password": "jaime23"
   },
   {
-    "id": "6265d4d978cb754f40d2e07a",
+    "id": "733eb2d304762011e4b19c93",
     "photo": "url",
-    "role": "cot",
+    "role": "3",
     "email": "coti@gmail.com",
     "password": "coti123"
   }
