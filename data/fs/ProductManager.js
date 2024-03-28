@@ -1,5 +1,5 @@
-const fs = require('fs')
-const crypto = require('crypto')
+import fs  from 'fs'
+import crypto from 'crypto'
 
 class ProductManager {
     constructor() {
@@ -46,17 +46,25 @@ class ProductManager {
     }
 
 
-    async read() {
+    async read(category = 'to do') {
         try {
             let all = await fs.promises.readFile(this.path, 'utf-8')
             all = JSON.parse(all)
-            if (!all) {
-                throw new Error('no existe')
-            } else {
+            if (!category || category === 'to do') {
                 console.log(all);
+                return all
+            }else{
+                const filtered = all.filter((el)=>el.category === category)
+                if (filtered.length === 0) {
+                    return null
+                }else{
+                    console.log(filtered);
+                    return filtered
+                }
             }
         } catch (error) {
             console.log(error);
+            return null
         }
     }
 
@@ -70,6 +78,7 @@ class ProductManager {
                 throw new Error('no se encontro el id')
             } else {
                 console.log(one);
+                return one
             }
         } catch (error) {
             console.log(error);
@@ -96,83 +105,153 @@ class ProductManager {
     }
 }
 
+
 const products = new ProductManager()
+export default products;
 
-async function mets() {
-    await products.create({
-        title: 'neumaticos',
-        photo: 'hneumatico.png',
-        category: 'autos',
-        price: 250,
-        stock: 38
-    })
-    await products.create({
-        title: 'motor',
-        photo: 'motor.png',
-        category: 'autos',
-        price: 500,
-        stock: 10
-    })
-    await products.create({
-        title: 'caja',
-        photo: 'caja.png',
-        category: 'cajas',
-        price: 300,
-        stock: 20
-    })
-    await products.create({
-        title: 'silla',
-        category: 'muebles',
-        price: 200,
-        stock: 38
-    })
-    await products.create({
-        title: 'sillon',
-        photo: 'sillon.png',
-        category: 'Muebles',
-        price: 150,
-        stock: 12
-    })
-    await products.create({
-        title: 'remera',
-        photo: 'remer.png',
-        category: 'ropa',
-        price: 70,
-        stock: 38
-    })
-    await products.create({
-        title: 'media',
-        photo: 'medias.png',
-        category: 'ropa',
-        price: 20,
-        stock: 18
-    })
-    await products.create({
-        title: 'abrigo',
-        category: 'ropa',
-        price: 40,
-        stock: 50
-    })
-    await products.create({
-        title: 'gitarra',
-        photo: 'guitarra.png',
-        category: 'instrumento',
-        price: 30,
-        stock: 12
-    })
-    await products.create({
-        title: 'celular',
-        category: 'electronicos',
-        price: 1200,
-        stock: 10
-    })
-    await products.read();
 
-    // await products.readOne('3232')                 //no encontrado
-    // await products.readOne("395a75486d1cc41286ed354f")
+// async function mets() {
+//     await products.create({
+//         title: 'boca',
+//         photo: 'bocaremera.png',
+//         category: 'deportivo',
+//         price: 250,
+//         stock: 38
+//     })
+//     await products.create({
+//         title: 'riber',
+//         photo: 'remerariber.png',
+//         category: 'deportivo',
+//         price: 500,
+//         stock: 10
+//     })
+//     await products.create({
+//         title: 'racing',
+//         photo: 'remera racing.png',
+//         category: 'deportivo',
+//         price: 300,
+//         stock: 20
+//     })
+//     await products.create({
+//         title: 'independiente',
+//         category: 'deportivo',
+//         price: 200,
+//         stock: 38
+//     })
+//     await products.create({
+//         title: 'pantalon jordan',
+//         photo: 'jordan.png',
+//         category: 'pantalones',
+//         price: 150,
+//         stock: 12
+//     })
+//     await products.create({
+//         title: 'pantalon bmw',
+//         photo: 'bmw.png',
+//         category: 'pantalones',
+//         price: 70,
+//         stock: 38
+//     })
+//     await products.create({
+//         title: 'media',
+//         photo: 'medias.png',
+//         category: 'medias',
+//         price: 20,
+//         stock: 18
+//     })
+//     await products.create({
+//         title: 'abrigo',
+//         category: 'ropa',
+//         price: 40,
+//         stock: 50
+//     })
+//     await products.create({
+//         title: 'buzo GAP',
+//         photo: 'gap.png',
+//         category: 'buzos',
+//         price: 30,
+//         stock: 12
+//     })
+//     await products.create({
+//         title: 'buzo shark',
+//         category: 'buzos',
+//         price: 1200,
+//         stock: 10
+//     })
+//     await products.create({
+//         title: 'max 90',
+//         photo: 'max90.png',
+//         category: 'zapatillas',
+//         price: 20,
+//         stock: 60
+//     })
+//     await products.create({
+//         title: 'converse',
+//         photo: 'converse.png',
+//         category: 'zapatillas',
+//         price: 500,
+//         stock: 10
+//     })
+//     await products.create({
+//         title: 'adidas air',
+//         photo: 'air.png',
+//         category: 'zapatillas',
+//         price: 300,
+//         stock: 20
+//     })
+//     await products.create({
+//         title: 'yeezy',
+//         category: 'zapatillas',
+//         price: 200,
+//         stock: 38
+//     })
+//     await products.create({
+//         title: 'media roja',
+//         photo: 'media.png',
+//         category: 'medias',
+//         price: 150,
+//         stock: 12
+//     })
+//     await products.create({
+//         title: 'ojota air',
+//         photo: 'ojota.png',
+//         category: '',
+//         price: 70,
+//         stock: 38
+//     })
+//     await products.create({
+//         title: 'ojota adidas',
+//         photo: 'ojota.png',
+//         category: 'ojotas',
+//         price: 20,
+//         stock: 18
+//     })
+//     await products.create({
+//         title: 'abrigo blanco',
+//         category: 'abrigos',
+//         price: 40,
+//         stock: 50
+//     })
+//     await products.create({
+//         title: 'abrigo verde',
+//         photo: 'abrigo.png',
+//         category: 'abrigos',
+//         price: 30,
+//         stock: 12
+//     })
+//     await products.create({
+//         title: 'abrigo azul',
+//         category: 'abrigos',
+//         price: 1200,
+//         stock: 10
+//     })
+//     await products.read();
 
-    // await products.destroyid('232323')            //no encontrado
-    // await products.destroyid("1eb7de17d51ea290a8dd4abd")
+//     // await products.readOne('3232')                 //no encontrado
+//     // await products.readOne("395a75486d1cc41286ed354f")
 
-}
-mets()
+//     // await products.destroyid('232323')            //no encontrado
+//     // await products.destroyid("1eb7de17d51ea290a8dd4abd")
+
+// }
+// mets()

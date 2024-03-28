@@ -1,62 +1,62 @@
 [
   {
-    "id": "b85747797016a872a0b3ff0b",
-    "photo": "hneumatico.png",
-    "title": "neumaticos",
-    "category": "autos",
+    "id": "5ceb1b378d5f63c4e8c145f4",
+    "photo": "bocaremera.png",
+    "title": "boca",
+    "category": "deportivo",
     "price": 250,
     "stock": 38
   },
   {
-    "id": "43010e40c8d4cb87ee3ea1e3",
-    "photo": "motor.png",
-    "title": "motor",
-    "category": "autos",
+    "id": "4df6d1d8c9227148e909c697",
+    "photo": "remerariber.png",
+    "title": "riber",
+    "category": "deportivo",
     "price": 500,
     "stock": 10
   },
   {
-    "id": "1c257a3de3650369bf7ca6ea",
-    "photo": "caja.png",
-    "title": "caja",
-    "category": "cajas",
+    "id": "b1dbaf424f4374a4f88dd67c",
+    "photo": "remera racing.png",
+    "title": "racing",
+    "category": "deportivo",
     "price": 300,
     "stock": 20
   },
   {
-    "id": "d65f93848ede73a806ca0305",
+    "id": "7fa468b3cf1ae6715f1cabea",
     "photo": "",
-    "title": "silla",
-    "category": "muebles",
+    "title": "independiente",
+    "category": "deportivo",
     "price": 200,
     "stock": 38
   },
   {
-    "id": "9570bdc7edd965f4ff21a898",
-    "photo": "sillon.png",
-    "title": "sillon",
-    "category": "Muebles",
+    "id": "2c30ccd58df2242d34c97e8d",
+    "photo": "jordan.png",
+    "title": "pantalon jordan",
+    "category": "pantalones",
     "price": 150,
-    "stock": 15
+    "stock": 12
   },
   {
-    "id": "9164827c6bb392de4c607bec",
-    "photo": "remer.png",
-    "title": "remera",
-    "category": "ropa",
+    "id": "e0d38121f2f7294a6c0129c2",
+    "photo": "bmw.png",
+    "title": "pantalon bmw",
+    "category": "pantalones",
     "price": 70,
     "stock": 38
   },
   {
-    "id": "fc8a17a8a3efc1a1a7ba0f44",
+    "id": "863d5725579c979079857e88",
     "photo": "medias.png",
     "title": "media",
-    "category": "ropa",
+    "category": "medias",
     "price": 20,
     "stock": 18
   },
   {
-    "id": "4021173c448d6950cc7dc469",
+    "id": "b32556cfddba3b257383a1ba",
     "photo": "",
     "title": "abrigo",
     "category": "ropa",
@@ -64,18 +64,98 @@
     "stock": 50
   },
   {
-    "id": "6da43d8339055b499c3b45fa",
-    "photo": "guitarra.png",
-    "title": "gitarra",
-    "category": "instrumento",
+    "id": "92fe36adbead50210c07b914",
+    "photo": "gap.png",
+    "title": "buzo GAP",
+    "category": "buzos",
     "price": 30,
     "stock": 12
   },
   {
-    "id": "9086a28bfdb92ab7fcb60f76",
+    "id": "605c4dbc38d22014d136980c",
     "photo": "",
-    "title": "celular",
-    "category": "electronicos",
+    "title": "buzo shark",
+    "category": "buzos",
+    "price": 1200,
+    "stock": 10
+  },
+  {
+    "id": "0016a0f62d315498d714f61e",
+    "photo": "max90.png",
+    "title": "max 90",
+    "category": "zapatillas",
+    "price": 20,
+    "stock": 60
+  },
+  {
+    "id": "7f1fd7ad55da315fcd521ec3",
+    "photo": "converse.png",
+    "title": "converse",
+    "category": "zapatillas",
+    "price": 500,
+    "stock": 10
+  },
+  {
+    "id": "b0c6b02e0e8dcbfdac0e5413",
+    "photo": "air.png",
+    "title": "adidas air",
+    "category": "zapatillas",
+    "price": 300,
+    "stock": 20
+  },
+  {
+    "id": "67fe3a30f6451d885fd46de3",
+    "photo": "",
+    "title": "yeezy",
+    "category": "zapatillas",
+    "price": 200,
+    "stock": 38
+  },
+  {
+    "id": "d3dd79bc70882042c7998f48",
+    "photo": "media.png",
+    "title": "media roja",
+    "category": "medias",
+    "price": 150,
+    "stock": 12
+  },
+  {
+    "id": "628698959434acaef2cdf04c",
+    "photo": "ojota.png",
+    "title": "ojota air",
+    "category": "",
+    "price": 70,
+    "stock": 38
+  },
+  {
+    "id": "6faef77c647b311c11907932",
+    "photo": "ojota.png",
+    "title": "ojota adidas",
+    "category": "ojotas",
+    "price": 20,
+    "stock": 18
+  },
+  {
+    "id": "bfe14887bca58a63d6cce2ce",
+    "photo": "",
+    "title": "abrigo blanco",
+    "category": "abrigos",
+    "price": 40,
+    "stock": 50
+  },
+  {
+    "id": "a7668036c904f6f59084e011",
+    "photo": "abrigo.png",
+    "title": "abrigo verde",
+    "category": "abrigos",
+    "price": 30,
+    "stock": 12
+  },
+  {
+    "id": "8988942cfa88c05de833c1d5",
+    "photo": "",
+    "title": "abrigo azul",
+    "category": "abrigos",
     "price": 1200,
     "stock": 10
   }
