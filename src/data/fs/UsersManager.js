@@ -4,7 +4,7 @@ import crypto from 'crypto'
 
 class UserManager {
     constructor() {
-        this.path = './data/fs/files/users.json'
+        this.path = './src/data/fs/files/users.json'
         this.init()
     }
 
@@ -18,32 +18,32 @@ class UserManager {
             console.log('archivo ya existe');
         }
     }
-
+   
     async create(data) {
         try {
-            if (!data.email || !data.password) {
-                const erro = new Error('ingrese mail y contraseña')
-                throw erro
-            } else {
-                const product = {
+          if (!data.password || !data.email) {
+            throw new Error("ERROR : NOT EMAIL OR PASSWORD");
+          } else {
+                  const product = {
                     id: crypto.randomBytes(12).toString('hex'),
-                    photo: data.photo || 'url',
-                    role: data.role,
-                    email: data.email,
-                    password: data.password
-                }
-                let all = await fs.promises.readFile(this.path, 'utf-8')
-                all = JSON.parse(all)
-                all.push(product)
-                all = JSON.stringify(all, null, 2)
-                await fs.promises.writeFile(this.path, all)
-                console.log('creado');
-                return product;
-            }
+                     photo: data.photo || 'url',
+                     role: data.role  || 0,
+                     email: data.email,
+                     password: data.password
+             }
+
+            let all = await fs.promises.readFile(this.path, "utf-8");
+            all = JSON.parse(all);
+            all.push(product);
+            all = JSON.stringify(all, null, 2);
+            await fs.promises.writeFile(this.path, all);
+            return product;
+          }
         } catch (error) {
-            throw (error);
+          throw error;
         }
-    }
+      }
+
 
 
     async read(role = 0) {
@@ -103,44 +103,63 @@ class UserManager {
             console.log(error);
         }
     }
+    async update(id, data) {
+        try {
+          let all = await this.read();
+          let one = all.find((each) => each.id === id);
+          if (one) {
+            for (let prop in data) {
+              one[prop] = data[prop];
+            }
+            all = JSON.stringify(all, null, 2);
+            await fs.promises.writeFile(this.path, all);
+            return one;
+          } else {
+            const error = new Error("Not founding!");
+            error.statusCode = 404;
+            throw error;
+          }
+        } catch (error) {
+          throw error;
+          
+        }
+      }
 
 }
 
 const users = new UserManager()
 export default users
 
-// async function mets() {
-//     await users.create({
-//         role: '0',
-//         photo: 'hello.png',
-//         email: 'juan@gmail.com',
-//         password: 'juan123'
-//     })
-//     await users.create({
-//         role: '1',
-//         photo: 'martin.png',
-//         email: 'martin@gmail.com',
-//         password: 'martin123'
-//     })
-//     await users.create({
-//         role: '2',
-//         photo: 'chau.png',
-//         email: 'jaime@gmail.com',
-//         password: 'jaime23'
-//     })
-//     await users.create({
-//         role: '3',
-//         email: 'coti@gmail.com',
-//         password: 'coti123'
-//     })
-//     await users.read();
+async function mets() {
+    await users.create({
+        role: '0',
+        photo: 'jota.png',
+        email: 'jota@gmail.com',
+        password: 'jota123'
+    })
+    await users.create({
+        email: 'martin@gmail.com',
+        password: 'martin123'
+    })
+    await users.create({
+        role: '2',
+        photo: 'jaime.png',
+        email: 'jaime@gmail.com',
+        password: 'jaime23'
+    })
+    await users.create({
+        
+        email: 'coti@gmail.com',
+        password: 'coti123'
+    })
+    await users.read();
 
 
-//     // await users.readOne(1111)                         
-//     // await users.readOne("4cd24ce955d04c4a612cfa39")
+    // await users.readOne(1111)                         
+    // await users.readOne("4cd24ce955d04c4a612cfa39")
     
-//     // await users.destroyId(34131)                      
-//     // await users.destroyId("c4f58ff5676d6181198d5beb")
+    // await users.destroyId(34131)                      
+    // await users.destroyId("c4f58ff5676d6181198d5beb")
 
-// }
-// mets()
+}
+

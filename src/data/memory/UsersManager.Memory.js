@@ -61,6 +61,27 @@ class UserManager {
             console.log(error);
         }
     }
+
+    update(id, data) {
+        try {
+          let all =  this.read();
+          let one = all.find((each) => each.id === id);
+          if (one) {
+            for (let prop in data) {
+              one[prop] = data[prop];
+            }
+            console.log(one);
+            return one;
+          } else {
+            const error = new Error("Not founding!");
+            error.statusCode = 404;
+            throw error;
+          }
+        } catch (error) {
+          throw error;
+          
+        }
+      }
 }
 
 

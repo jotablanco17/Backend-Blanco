@@ -1,118 +1,28 @@
+
 import express from "express"
+import morgan from "morgan"
+
+import indexRouter from "./src/router/index.router.js"
+import errorHandler from "./src/middlewares/errorHandler.js"
+import pathHandler from "./src/middlewares/pathHandler.js"
+
+//init
 const server = express()
+const port = 8080
+const ready = () => console.log(`server ready in ${port}`)
+server.listen(port, ready)
 
-const path = 8080
-const ready = () => console.log(`server ready in ${path}`)
-server.listen(path, ready)
-
-
-
-server.use(express.urlencoded({extended : true}))  
-
+//middlewares
+server.use(express.json())                           //manejar jsons
+server.use(express.urlencoded({extended : true}))    //leer params y queries
 
 
-//----------------////------------users ------------------////
-
-import users from './data/fs/UsersManager.js'
-//read all
-server.get("/api/users", async (req, res)=> {
-    try {
-        const { role } = req.query
-        let all = await  users.read(role)
-        if (all) {
-            return res.status(200).json({
-                response : all,
-                role
-            }, null, 2)
-        }else{
-            const error = new Error ('error no se encontraron')
-            error.status = 404
-            throw error
-        }
-    } catch (error) {
-        console.log(error);
-        return res.status(error.status).json({
-            response : error.message
-        })
-    }
-})
+//router   ... orden correcto
+server.use("/", indexRouter)           //primero leer todas las rutas
+server.use(errorHandler)               //catchear los errores de endpoints
+server.use(pathHandler)                //errores de ruta
+server.use(morgan("dev"))
 
 
 
-//readOne
-server.get("/api/users/:uid",async (req, res)=>{
-    try {
-         const { uid } = req.params
-         const one = await users.readOne(uid)
 
-         if (one) {
-               return res.status(200).json({
-            response : one,
-            success : true
-        })
-         }else{
-            const error = new Error('dont find id :  ERROR')
-            error.status = 404
-            throw error
-         }
-      
-    } catch (error) {
-        console.log(error);
-        return res.status(error.status).json({
-            response : error.message,
-            success : false
-        })
-    }
-})
-
-
-//----------------////------------products ------------------////
-
-import products from './data/fs/ProductManager.js'
-
-
-
-//read all || categ
-server.get("/api/products", async (req,res)=>{
-    try {
-        const { category } = req.query
-        const all = await products.read(category)
-        if (all) {
-            return res.status(200).json({
-                response : all,
-                category
-            })
-        }else{
-            const error = new Error('ERROR')
-            throw error
-        }
-    } catch (error) {
-        console.log(error);
-        return res.status(404).json({
-            response : error.message
-        })
-    }
-})
-
-
-
-//readOne
-server.get("/api/products/:pid", async(req, res)=>{
-    try {
-        const { pid } = req.params
-        const one = await products.readOne(pid)
-
-        if (!one) {
-            const error = new Error('dont find id : ERROR')
-            throw error
-        }else{
-            return res.status(201).json({
-                response : one,
-            })
-        }
-    } catch (error) {
-        return res.status(404).json({
-            response : error.message,
-        })
-    }
-})
