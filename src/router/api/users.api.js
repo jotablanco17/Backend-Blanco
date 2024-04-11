@@ -1,5 +1,6 @@
 import { Router } from "express";
 import users from "../../data/fs/UsersManager.js";
+import isPassword from "../../middlewares/isPass.mid.js";
 const usersRouter = Router()
 export default usersRouter
 
@@ -62,7 +63,7 @@ const create = async (req, res, next) => {
       return next(error)
     }
   };
-usersRouter.post("/", create);
+usersRouter.post("/",isPassword, create);
 
 
 //put

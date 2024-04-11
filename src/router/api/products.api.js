@@ -1,5 +1,7 @@
 import { Router } from "express";
 import products from "../../data/fs/ProductManager.js";
+import isTitle from "../../middlewares/isTitle.mid.js";
+import uploader from "../../middlewares/multer.mid.js";
 
 const productsRouter = Router()
 export default productsRouter
@@ -50,6 +52,7 @@ productsRouter.get("/:pid", async(req, res, next)=>{
 const createProd = async (req, res, next) => {
   try {
     const data = req.body;
+    console.log(req.file);
     const one = await products.create(data);
     return res.json({
       statusCode: 201,
@@ -59,7 +62,7 @@ const createProd = async (req, res, next) => {
    return next(error)
   }
 };
-productsRouter.post("/", createProd);
+productsRouter.post("/",uploader.single('photo'),isTitle, createProd);
 
 
 //put
