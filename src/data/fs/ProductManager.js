@@ -13,23 +13,17 @@ class ProductManager {
             const stringData = JSON.stringify([], null, 2)
             fs.writeFileSync(this.path, stringData)
             console.log('archivo creado');
-        } else {
-            console.log('archivo ya existe');
-        }
+        } 
     }
 
     async create(data) {
         try {
-            if (!data.title) {
-                const erro = new Error(' NO CREADO : ingrese un titulo al producto')
-                throw erro
-            } else {
                 const product = {
                     id: crypto.randomBytes(12).toString('hex'),
-                    photo: data.photo || '',
+                    photo: data.photo || 'photo.png',
                     title: data.title,
-                    category: data.category,
-                    price: data.price,
+                    category: data.category || "to do",
+                    price: data.price || '3000',
                     stock: data.stock || 'sin stock'
                 }
                 let all = await fs.promises.readFile(this.path, 'utf-8')
@@ -39,7 +33,7 @@ class ProductManager {
                 await fs.promises.writeFile(this.path, all)
                 console.log('creado');
                 return product;
-            }
+            
         } catch (error) {
             throw (error);
         }

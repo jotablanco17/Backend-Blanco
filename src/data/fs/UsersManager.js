@@ -1,4 +1,4 @@
-import fs  from 'fs'
+import fs from 'fs'
 import crypto from 'crypto'
 
 
@@ -14,23 +14,18 @@ class UserManager {
             const stringData = JSON.stringify([], null, 2)
             fs.writeFileSync(this.path, stringData)
             console.log('archivo creado');
-        } else {
-            console.log('archivo ya existe');
         }
     }
-   
+
     async create(data) {
         try {
-          if (!data.password || !data.email) {
-            throw new Error("ERROR : NOT EMAIL OR PASSWORD");
-          } else {
-                  const product = {
-                    id: crypto.randomBytes(12).toString('hex'),
-                     photo: data.photo || 'url',
-                     role: data.role  || 0,
-                     email: data.email,
-                     password: data.password
-             }
+            const product = {
+                id: crypto.randomBytes(12).toString('hex'),
+                photo: data.photo || 'url',
+                role: data.role || 0,
+                email: data.email,
+                password: data.password
+            }
 
             let all = await fs.promises.readFile(this.path, "utf-8");
             all = JSON.parse(all);
@@ -38,11 +33,11 @@ class UserManager {
             all = JSON.stringify(all, null, 2);
             await fs.promises.writeFile(this.path, all);
             return product;
-          }
+
         } catch (error) {
-          throw error;
+            throw error;
         }
-      }
+    }
 
 
 
@@ -51,12 +46,11 @@ class UserManager {
             let all = await fs.promises.readFile(this.path, 'utf-8')
             all = JSON.parse(all)
             if (!role || role === 0) {
-                console.log(all);
                 return all
-            }else{
+            } else {
                 const filtered = all.filter((el) => el.role === role);
                 if (filtered.length === 0) {
-                    return null; 
+                    return null;
                 } else {
                     console.log(filtered)
                     return filtered;
@@ -105,25 +99,25 @@ class UserManager {
     }
     async update(id, data) {
         try {
-          let all = await this.read();
-          let one = all.find((each) => each.id === id);
-          if (one) {
-            for (let prop in data) {
-              one[prop] = data[prop];
+            let all = await this.read();
+            let one = all.find((each) => each.id === id);
+            if (one) {
+                for (let prop in data) {
+                    one[prop] = data[prop];
+                }
+                all = JSON.stringify(all, null, 2);
+                await fs.promises.writeFile(this.path, all);
+                return one;
+            } else {
+                const error = new Error("Not founding!");
+                error.statusCode = 404;
+                throw error;
             }
-            all = JSON.stringify(all, null, 2);
-            await fs.promises.writeFile(this.path, all);
-            return one;
-          } else {
-            const error = new Error("Not founding!");
-            error.statusCode = 404;
-            throw error;
-          }
         } catch (error) {
-          throw error;
-          
+            throw error;
+
         }
-      }
+    }
 
 }
 
@@ -148,7 +142,7 @@ async function mets() {
         password: 'jaime23'
     })
     await users.create({
-        
+
         email: 'coti@gmail.com',
         password: 'coti123'
     })
@@ -157,7 +151,7 @@ async function mets() {
 
     // await users.readOne(1111)                         
     // await users.readOne("4cd24ce955d04c4a612cfa39")
-    
+
     // await users.destroyId(34131)                      
     // await users.destroyId("c4f58ff5676d6181198d5beb")
 
