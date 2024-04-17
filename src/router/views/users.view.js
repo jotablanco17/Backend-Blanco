@@ -4,7 +4,6 @@ const usersRouter = Router()
 import users from "../../data/fs/UsersManager.js";
 
 
-
 export default usersRouter
 
 usersRouter.get("/", async (req, res, next)=>{
