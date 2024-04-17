@@ -10,6 +10,17 @@ const viewsRouter = Router()
 viewsRouter.use('/users', registerView)
 viewsRouter.use("/users", usersRouter)
 viewsRouter.use("/products", productsRouter)
+viewsRouter.get("/chat", async(req, res, next) => {
+    try {
+        return res.render("chat",{title : 'chat'})
+    } catch (error) {
+        next(error)
+    }
+}) 
+
+
+
+
 viewsRouter.get("/",async (req, res, next)=>{
     try {
         const prods = await products.read()

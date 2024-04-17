@@ -1,29 +1,29 @@
 [
   {
     "id": "335fc7e2efbd24327687d4c0",
-    "photo": "jota.png",
-    "role": "0",
-    "email": "jota@gmail.com",
-    "password": "jota123"
+    "photo": "https://img.olympics.com/images/image/private/t_1-1_300/f_auto/primary/gzfhqplj0akgrkxizpnf",
+    "role": "3",
+    "email": "Jota-.com",
+    "password": "Jota123"
   },
   {
     "id": "582e7659e688be01216c6c37",
-    "photo": "url",
-    "role": 0,
-    "email": "martin@gmail.com",
-    "password": "martin123"
+    "photo": "https://www.cmtv.com.ar/imagenes_noticias/0274140001630951430.webp?Duki",
+    "role": "3",
+    "email": "duko@gmail.com",
+    "password": "duko123"
   },
   {
     "id": "a3bcded0324739d91a613d67",
-    "photo": "jaime.png",
-    "role": "2",
-    "email": "jaime@gmail.com",
-    "password": "jaime23"
+    "photo": "https://media-eze1-1.cdn.whatsapp.net/v/t61.24694-24/184503918_298279668467252_4028678890504964768_n.jpg?ccb=11-4&oh=01_ASAVOf1VzbeJQmuLeEoinOH7vBISHhV7T8Ag1tGP-oY-tA&oe=662A9B93&_nc_sid=e6ed6c&_nc_cat=106",
+    "role": "3",
+    "email": "pela@gmail.com",
+    "password": "nahue123"
   },
   {
     "id": "25812fdc535a8443e4d29ac4",
-    "photo": "url",
-    "role": 0,
+    "photo": "https://media-eze1-1.cdn.whatsapp.net/v/t61.24694-24/429282212_1664505914082256_1924420386968899937_n.jpg?ccb=11-4&oh=01_Q5AaILE9Kon77q2lI_7ZWTQ_1KIeFXWO4Pf0qU0mVlxvu6KH&oe=662A9BCC&_nc_sid=e6ed6c&_nc_cat=104",
+    "role": "3",
     "email": "coti@gmail.com",
     "password": "coti123"
   }

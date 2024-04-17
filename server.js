@@ -21,6 +21,7 @@ const port = 8080
 const ready = () => console.log(`server ready in ${port}`)
 const nodeServer = createServer(server)
 const socketServer = new Server(nodeServer)
+export default socketServer
 socketServer.on("connection", socketCb)
 nodeServer.listen(port, ready)
 
