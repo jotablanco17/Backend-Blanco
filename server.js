@@ -28,7 +28,7 @@ nodeServer.listen(port, ready)
 
 //middlewares
 server.use(express.json())                           //manejar jsons
-server.use(express.urlencoded({ extended: true }))    //leer params y queries
+server.use(express.urlencoded({ extended: true }))    //leer params y queriesss
 server.use(express.static('public'))
 
 //template engine
