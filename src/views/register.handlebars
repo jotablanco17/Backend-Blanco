@@ -8,6 +8,9 @@
             <div class="mb-3">
                 <input required type="password" class="form-control" id="password" placeholder="password">
             </div>
+            <div class="mb-3">
+                <input required type="url" class="form-control" id="photo" placeholder="photo">
+            </div>
             <button type="submit" class="btn btn-primary" id="registerButton">Register</button>
         </form>
     </article>
@@ -19,11 +22,9 @@
         let template = ''
         template = data.map((e) => ` 
                  <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
+                        <img src="${e.photo}" class="card-img-top" alt="...">
                             <div class="card-body">
                             <h5 class="card-title">${e.email}</h5>
-                            <p class="card-text">${e.password}</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
                             </div>
                 </div>
             
@@ -34,12 +35,13 @@
     const register = document.getElementById('registerButton')
     const validateForm = (e) => {
         e.preventDefault();
+        const photo = document.getElementById('photo').value
         const email = document.getElementById('email').value
         const password = document.getElementById('password').value
         if(email.length === 0 || password.length === 0){
             alert('complete form')
         }else{
-             socket.emit('register', {email, password})
+             socket.emit('register', {email, password, photo})
             alert('usuario registrado correctamente')
             form.reset()
         }
