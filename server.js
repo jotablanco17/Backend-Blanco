@@ -39,7 +39,7 @@ server.set('views', __dirname + '/src/views')
 
 //router   ... orden correcto
 server.use("/", indexRouter)           //primero leer todas las rutass
-server.use(errorHandler)               //catchear los errores de endpoints
+server.use(errorHandler)               //catchear los errores de endpointsss
 server.use(pathHandler)                //errores de ruta
 server.use(morgan("dev"))
 
