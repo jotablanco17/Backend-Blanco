@@ -1,7 +1,9 @@
 import { Router } from "express";
-import products from "../../data/fs/ProductManager.js";
 import isTitle from "../../middlewares/isTitle.mid.js";
 import uploader from "../../middlewares/multer.mid.js";
+import products from "../../data/mongo/ProductManager.Mongo.js.js";
+
+
 
 const productsRouter = Router()
 export default productsRouter
@@ -49,7 +51,7 @@ productsRouter.get("/:pid", async(req, res, next)=>{
 })
 
 //post
-const createProd = async (req, res, next) => {
+const create = async (req, res, next) => {
   try {
     const data = req.body;
     console.log(req.file);
@@ -62,11 +64,11 @@ const createProd = async (req, res, next) => {
    return next(error)
   }
 };
-productsRouter.post("/",uploader.single('photo'),isTitle, createProd);
+productsRouter.post("/",uploader.single('photo'),isTitle, create);
 
 
 //put
-const updateProd = async (req, res, next) => {
+const update = async (req, res, next) => {
 try {
   const { pid } = req.params
   const data = req.body
@@ -79,15 +81,15 @@ try {
   return next(error)
 }
 };
-productsRouter.put("/:pid", updateProd);
+productsRouter.put("/:pid", update);
 
 
 
 //delete
-const destroyProd = async(req,res,next)=>{
+const destroy = async(req,res,next)=>{
   try {
     const { pid } = req.params
-    const one = await products.destroyid(pid)
+    const one = await products.destroy(pid)
     if (!one) {
         const error = new Error('error!')
         error.status = 404
@@ -102,4 +104,4 @@ const destroyProd = async(req,res,next)=>{
     return next(error)
   }
 }
-productsRouter.delete("/:pid", destroyProd)
+productsRouter.delete("/:pid", destroy)

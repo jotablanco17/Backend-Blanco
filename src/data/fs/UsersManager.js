@@ -79,7 +79,7 @@ class UserManager {
         }
     }
 
-    async destroyId(id) {
+    async destroy(id) {
         try {
             let all = await fs.promises.readFile(this.path, 'utf-8')
             all = JSON.parse(all)
