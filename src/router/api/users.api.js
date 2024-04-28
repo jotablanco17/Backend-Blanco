@@ -1,6 +1,10 @@
 import { Router } from "express";
-import users from "../../data/fs/UsersManager.js";
+import users from "../../data/mongo/UsersManager.Mongo.js";
 import isPassword from "../../middlewares/isPass.mid.js";
+
+
+
+
 const usersRouter = Router()
 export default usersRouter
 
@@ -88,7 +92,7 @@ usersRouter.put("/:uid", update);
 const destroy = async(req,res, next)=>{
     try {
       const { uid } = req.params
-      const one = await users.destroyId(uid)
+      const one = await users.destroy(uid)
       if (!one) {
         const error = new Error('not found')
         throw error

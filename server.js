@@ -1,5 +1,5 @@
-
-import  express from "express"
+import "dotenv/config.js"
+import express from "express"
 import { createServer } from "http"
 import { Server } from "socket.io"
 import { engine } from "express-handlebars"
@@ -12,13 +12,18 @@ import pathHandler from "./src/middlewares/pathHandler.js"
 import __dirname from "./utils.js"
 import morgan from "morgan"
 import socketCb from "./src/router/index.socket.js"
+import dbConnect from "./src/utils/dbConnect.js"
 
-
+//mongoDB
+console.log(`Variable de entorno : ${process.env.MONGO_URI}`);
 
 //init
 const server = express()
 const port = 8080
-const ready = () => console.log(`server ready in ${port}`)
+const ready = async () => {
+    console.log(`server ready in ${port}`)
+    await dbConnect()
+}
 const nodeServer = createServer(server)
 const socketServer = new Server(nodeServer)
 export default socketServer
