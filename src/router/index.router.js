@@ -5,7 +5,7 @@ import viewsRouter from "./views/index.views.js";
 const indexRouter = Router()
 
 indexRouter.use("/api", apiRouter)
-indexRouter.use("/", viewsRouter)
+indexRouter.use("/handlebars", viewsRouter)
 
 
 export default indexRouter

@@ -1,11 +1,11 @@
-import users from "../data/fs/UsersManager.js";
-import products from "../data/fs/ProductManager.js";
+import users from "../data/mongo/UsersManager.Mongo.js";
+import products from "../data/mongo/ProductManager.Mongo.js.js";
 import socketServer from "../../server.js";
 
 let messages = []
 
 export default async (socket) => {
-    console.log("client id: " + socket.id)
+   
 
     //users
     socket.emit('users', await users.read())
