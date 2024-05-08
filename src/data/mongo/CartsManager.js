@@ -11,21 +11,11 @@ export default cartsManager
 
 async function test() {
     try {
-        // await cartsManager.create({
-        //     user_id: '66298a1fa8836ad2046ed63e',
-        //     product_id: 2,
-        //     quantity: 2,
-        // })
-        // await cartsManager.create({
-        //     user_id: '66298a1fa8836ad2046ed63f',
-        //     product_id: 4,
-        //     quantity: 1,
-        // })
-         await cartsManager.read()
-         await cartsManager.readOne('662e9e45ef6237f46d412a2c')
-        //  await cartsManager.destroy('662e9e46ef6237f46d412a2f')
-      
-
+        await cartsManager.create({
+            user_id: '66298a1fa8836ad2046ed63e',
+            product_id: 2,
+            quantity: 2,
+        })
     } catch (error) {
         console.log(error);
     }

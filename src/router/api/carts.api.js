@@ -1,22 +1,19 @@
 import { Router } from "express";
-import users from "../../data/mongo/UsersManager.Mongo.js";
-import isPassword from "../../middlewares/isPass.mid.js";
+import cartsManager from "../../data/mongo/CartsManager.js";
 
 
-
-
-const usersRouter = Router()
-export default usersRouter
+const cartsRouter = Router()
+export default cartsRouter
 
 //read all
-usersRouter.get("/", async (req, res, next)=> {
+cartsRouter.get("/", async (req, res, next)=> {
     try {
-        const { role } = req.query
-        let all = await  users.read(role)
+        const { user } = req.query
+        let all = await  cartsManager.read(user)
         if (all) {
             return res.status(200).json({
                 response : all,
-                role
+                user
             }, null, 2)
         }else{
             const error = new Error ('error no se encontraron')
@@ -29,13 +26,34 @@ usersRouter.get("/", async (req, res, next)=> {
     }
 })
 
-
+cartsRouter.get("/", async (req, res, next)=> {
+  try {
+      const filter = {}
+      if (req.query.user_id) {
+        filter.user_id = req.query.user_id
+      }
+      let all = await  cartsManager.read({ filter })
+      if (all) {
+          return res.status(200).json({
+              response : all,
+              user
+          }, null, 2)
+      }else{
+          const error = new Error ('error no se encontraron')
+          error.status = 404
+          throw error
+      }
+  } catch (error) {
+      console.log(error);
+      return next(error)
+  }
+})
 
 //readOne
-usersRouter.get("/:uid",async (req, res, next)=>{
+cartsRouter.get("/:cid",async (req, res, next)=>{
     try {
-         const { uid } = req.params
-         const one = await users.readOne(uid)
+         const { cid } = req.params
+         const one = await cartsManager.readOne(cid)
 
          if (one) {
                return res.status(200).json({
@@ -53,12 +71,11 @@ usersRouter.get("/:uid",async (req, res, next)=>{
         return next(error)
     }
 })
-
 //post
 const create = async (req, res, next) => {
     try {
       const data = req.body;
-      const one = await users.create(data);
+      const one = await cartsManager.create(data);
       return res.json({
         statusCode: 201,
         message: "CREATED ID: " + one.id,
@@ -67,15 +84,13 @@ const create = async (req, res, next) => {
       return next(error)
     }
   };
-usersRouter.post("/create",isPassword, create);
-
-
+cartsRouter.post("/create",create);
 //put
 const update = async (req, res, next) => {
   try {
     const { uid } = req.params
     const data = req.body
-    const one = await users.update(uid,data)
+    const one = await cartsManager.update(uid,data)
     return res.json({
       statusCode: 200,
       response: one
@@ -84,15 +99,12 @@ const update = async (req, res, next) => {
     return next(error)
   }
 };
-usersRouter.put("/:uid", update);
-
-
-
+cartsRouter.put("/:uid", update);
 //delete
 const destroy = async(req,res, next)=>{
     try {
       const { uid } = req.params
-      const one = await users.destroy(uid)
+      const one = await cartsManager.destroy(uid)
       if (!one) {
         const error = new Error('not found')
         throw error
@@ -107,4 +119,4 @@ const destroy = async(req,res, next)=>{
       return next(error)
     }
   }
-usersRouter.delete("/:uid", destroy)
+cartsRouter.delete("/:uid", destroy)

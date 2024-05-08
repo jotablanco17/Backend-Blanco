@@ -9,47 +9,74 @@ const productsRouter = Router()
 export default productsRouter
 
 //read all
-productsRouter.get("/", async (req,res,next)=>{
-    try {
-        const { category } = req.query
-        const all = await products.read(category)
-        if (all) {
-            return res.status(200).json({
-                response : all,
-                category
-            })
-        }else{
-            const error = new Error('ERROR')
-            throw error
-        }
-    } catch (error) {
-        console.log(error);
-        return next(error)
-        
+productsRouter.get("/", async (req, res, next) => {
+  try {
+    const { category } = req.query
+    const all = await products.read(category)
+    if (all) {
+      return res.status(200).json({
+        response: all,
+        category
+      })
+    } else {
+      const error = new Error('ERROR')
+      throw error
     }
+  } catch (error) {
+    console.log(error);
+    return next(error)
+
+  }
 })
+//paginate
+productsRouter.get("/paginate", async (req, res, next) => {
+  try {
+    const filter = {}
+    const opts = {}
+    if (req.query.limit) {
+      opts.limit = req.query.limit
+    }
+    if (req.query.page) {
+      opts.page = req.query.page
+    }
+    if (req.query.user_id) {
+      filter.user_id = req.query.user_id
+    }
+    const all = await products.paginate({ filter, opts })
+    return res.status(200).json({
+      response: all.docs,
+      info: {
+        totalDocs : all.totalDocs,
+        page: all.page,
+        totalPages : all.totalPages,
+        limit: all.limit,
+        prevPage: all.prevPage,
+        nextPage: all.nextPage,
+      }})
+  } catch (error) {
+    console.log(error);
+    return next(error)
 
-
-
+  }
+})
 //readOne
-productsRouter.get("/:pid", async(req, res, next)=>{
-    try {
-        const { pid } = req.params
-        const one = await products.readOne(pid)
+productsRouter.get("/:pid", async (req, res, next) => {
+  try {
+    const { pid } = req.params
+    const one = await products.readOne(pid)
 
-        if (!one) {
-            const error = new Error('dont find id : ERROR')
-            throw error
-        }else{
-            return res.status(201).json({
-                response : one,
-            })
-        }
-    } catch (error) {
-      return next(error)
+    if (!one) {
+      const error = new Error('dont find id : ERROR')
+      throw error
+    } else {
+      return res.status(201).json({
+        response: one,
+      })
     }
+  } catch (error) {
+    return next(error)
+  }
 })
-
 //post
 const create = async (req, res, next) => {
   try {
@@ -61,44 +88,39 @@ const create = async (req, res, next) => {
       message: "CREATED ID: " + one.id,
     });
   } catch (error) {
-   return next(error)
+    return next(error)
   }
 };
-productsRouter.post("/",uploader.single('photo'),isTitle, create);
-
-
+productsRouter.post("/", uploader.single('photo'), isTitle, create);
 //put
 const update = async (req, res, next) => {
-try {
-  const { pid } = req.params
-  const data = req.body
-  const one = await products.update(pid,data)
-  return res.json({
-    statusCode: 200,
-    response: one
-  })
-} catch (error) {
-  return next(error)
-}
+  try {
+    const { pid } = req.params
+    const data = req.body
+    const one = await products.update(pid, data)
+    return res.json({
+      statusCode: 200,
+      response: one
+    })
+  } catch (error) {
+    return next(error)
+  }
 };
 productsRouter.put("/:pid", update);
-
-
-
 //delete
-const destroy = async(req,res,next)=>{
+const destroy = async (req, res, next) => {
   try {
     const { pid } = req.params
     const one = await products.destroy(pid)
     if (!one) {
-        const error = new Error('error!')
-        error.status = 404
-        throw error
-    }else{
-       return res.json({
-      statusCode: 200,
-      response: one
-    })
+      const error = new Error('error!')
+      error.status = 404
+      throw error
+    } else {
+      return res.json({
+        statusCode: 200,
+        response: one
+      })
     }
   } catch (error) {
     return next(error)

@@ -92,108 +92,108 @@ class ProductManager {
 
 
 
-function mets() {
+// function mets() {
 
 
-const gestorDeProductos = new ProductManager()
+// const gestorDeProductos = new ProductManager()
 
-gestorDeProductos.create({
-    photo: 'zapatilla.jpg ',
-    title: 'zapatilla ',
-    category: 'calzado',
-    price: 100,
-    stock: 1000
-}) 
+// gestorDeProductos.create({
+//     photo: 'zapatilla.jpg ',
+//     title: 'zapatilla ',
+//     category: 'calzado',
+//     price: 100,
+//     stock: 1000
+// }) 
 
-gestorDeProductos.create({
-    photo: 'remera.jpg ',
-    title: 'remera ',
-    category: 'ropa',
-    price: 200,
-    stock: 203
-}) 
+// gestorDeProductos.create({
+//     photo: 'remera.jpg ',
+//     title: 'remera ',
+//     category: 'ropa',
+//     price: 200,
+//     stock: 203
+// }) 
 
-gestorDeProductos.create({
-    photo: 'ojotas.jpg ',
-    title: 'ojota ',
-    category: 'calzado',
-    price: 50,
-    stock: 605
-}) 
+// gestorDeProductos.create({
+//     photo: 'ojotas.jpg ',
+//     title: 'ojota ',
+//     category: 'calzado',
+//     price: 50,
+//     stock: 605
+// }) 
 
-gestorDeProductos.create({
-    photo: 'pantalon.jpg ',
-    title: 'pantalon ',
-    category: 'pantalones',
-    price: 70,
-    stock: 1500
-}) 
-gestorDeProductos.create({
-    photo: 'gorra.jpg ',
-    title: 'gorra',
-    category: 'gorros',
-    price: 20,
-    stock: 150
-})
-gestorDeProductos.create({
-    photo: 'traje.jpg ',
-    title: 'traje ',
-    category: 'dress',
-    price: 300,
-    stock: 78
-}) 
+// gestorDeProductos.create({
+//     photo: 'pantalon.jpg ',
+//     title: 'pantalon ',
+//     category: 'pantalones',
+//     price: 70,
+//     stock: 1500
+// }) 
+// gestorDeProductos.create({
+//     photo: 'gorra.jpg ',
+//     title: 'gorra',
+//     category: 'gorros',
+//     price: 20,
+//     stock: 150
+// })
+// gestorDeProductos.create({
+//     photo: 'traje.jpg ',
+//     title: 'traje ',
+//     category: 'dress',
+//     price: 300,
+//     stock: 78
+// }) 
 
-gestorDeProductos.create({
-    photo: 'saco.jpg ',
-    title: 'saco',
-    category: 'ropa',
-    price: 270,
-    stock: 503
-}) 
-gestorDeProductos.create({
-    photo: 'vestido.jpg ',
-    title: 'vestido ',
-    category: 'ropa mujer',
-    price: 60,
-    stock: 105
-}) 
+// gestorDeProductos.create({
+//     photo: 'saco.jpg ',
+//     title: 'saco',
+//     category: 'ropa',
+//     price: 270,
+//     stock: 503
+// }) 
+// gestorDeProductos.create({
+//     photo: 'vestido.jpg ',
+//     title: 'vestido ',
+//     category: 'ropa mujer',
+//     price: 60,
+//     stock: 105
+// }) 
 
-gestorDeProductos.create({
-    photo: 'pollera.jpg ',
-    title: 'pollera ',
-    category: 'ropa mujer',
-    price: 80,
-    stock: 2500
-}) 
-gestorDeProductos.create({
-    photo: 'chaleco.jpg ',
-    title: 'chaleco',
-    category: 'abrigos',
-    price: 60,
-    stock: 250
-})
+// gestorDeProductos.create({
+//     photo: 'pollera.jpg ',
+//     title: 'pollera ',
+//     category: 'ropa mujer',
+//     price: 80,
+//     stock: 2500
+// }) 
+// gestorDeProductos.create({
+//     photo: 'chaleco.jpg ',
+//     title: 'chaleco',
+//     category: 'abrigos',
+//     price: 60,
+//     stock: 250
+// })
 
-    //producto sin tittle
-    gestorDeProductos.create({
-        photo: 'falda.jpg ',
-        category: 'abrigos',
-        price: 60,
-        stock: 250
-    })
+//     //producto sin tittle
+//     gestorDeProductos.create({
+//         photo: 'falda.jpg ',
+//         category: 'abrigos',
+//         price: 60,
+//         stock: 250
+//     })
 
 
-    // readOne
-    gestorDeProductos.readOne(17)              //id no encontrado
-    gestorDeProductos.readOne(10)              //me devuelve el producto
+//     // readOne
+//     gestorDeProductos.readOne(17)              //id no encontrado
+//     gestorDeProductos.readOne(10)              //me devuelve el producto
 
-    // destroy
-    gestorDeProductos.destroy(18)             //no encontrado
-    gestorDeProductos.destroy(4)             //me elimina el producto del id  
+//     // destroy
+//     gestorDeProductos.destroy(18)             //no encontrado
+//     gestorDeProductos.destroy(4)             //me elimina el producto del id  
 
-    //READ
-    console.log(gestorDeProductos.read());
-}
-mets()
+//     READ
+//     console.log(gestorDeProductos.read());
+// }
+// mets()
 
 
 
